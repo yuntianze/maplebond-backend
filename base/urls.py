@@ -3,6 +3,6 @@ from . import views as view
 
 
 urlpatterns = [
-    path('', view.getRoutes, name='routes'),
+    path('', view.index, name='index'),
     path('chat/', view.startChat, name='start-chat'),
 ]

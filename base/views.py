@@ -3,16 +3,24 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from utils.azure_openai_manager import AzureOpenAIManager
+from datetime import datetime
+from django.http import HttpResponse
+
 
 azure_openai_manager = AzureOpenAIManager(db_name='MapleBondDB', collection_name='ImmigrationCollection')
 
-@api_view(['GET'])
-def getRoutes(request):
-    routes = [
-        '/api/chat/',
-        '/api/topics/',
-    ]
-    return Response(routes)
+
+def index(request):
+    now = datetime.now()
+    html = f'''
+    <html>
+        <body>
+            <h1>Hello from Vercel!</h1>
+            <p>The current time is { now }.</p>
+        </body>
+    </html>
+    '''
+    return HttpResponse(html)
 
 
 @api_view(['POST'])

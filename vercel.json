@@ -16,14 +16,14 @@
       }
     ],
     "env": {
-      "OPENAI_API_KEY": "@openai_api_key",
-      "OPENAI_AZURE_ENDPOINT": "@openai_azure_endpoint",
-      "OPENAI_API_VERSION": "@openai_api_version",
-      "EMBEDDINGS_DEPLOYMENT_NAME": "@embeddings_deployment_name",
-      "COMPLETIONS_DEPLOYMENT_NAME": "@completions_deployment_name",
-      "DB_USER": "@db_user",
-      "DB_PASSWORD": "@db_password",
-      "DB_SERVERNAME": "@db_servername"
+      "OPENAI_API_KEY": "@OPENAI_API_KEY",
+      "OPENAI_AZURE_ENDPOINT": "@OPENAI_AZURE_ENDPOINT",
+      "OPENAI_API_VERSION": "@OPENAI_API_VERSION",
+      "EMBEDDINGS_DEPLOYMENT_NAME": "@EMBEDDINGS_DEPLOYMENT_NAME",
+      "COMPLETIONS_DEPLOYMENT_NAME": "@COMPLETIONS_DEPLOYMENT_NAME",
+      "DB_USER": "@DB_USER",
+      "DB_PASSWORD": "@DB_PASSWORD",
+      "DB_SERVERNAME": "@DB_SERVERNAME"
     }
   }
   

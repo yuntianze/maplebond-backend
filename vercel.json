@@ -1,0 +1,29 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "backend/wsgi.py",
+        "use": "@vercel/python",
+        "config": {
+          "maxLambdaSize": "15mb"
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "backend/wsgi.py"
+      }
+    ],
+    "env": {
+      "OPENAI_API_KEY": "@openai_api_key",
+      "OPENAI_AZURE_ENDPOINT": "@openai_azure_endpoint",
+      "OPENAI_API_VERSION": "@openai_api_version",
+      "EMBEDDINGS_DEPLOYMENT_NAME": "@embeddings_deployment_name",
+      "COMPLETIONS_DEPLOYMENT_NAME": "@completions_deployment_name",
+      "DB_USER": "@db_user",
+      "DB_PASSWORD": "@db_password",
+      "DB_SERVERNAME": "@db_servername"
+    }
+  }
+  

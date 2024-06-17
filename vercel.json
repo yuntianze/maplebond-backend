@@ -14,16 +14,6 @@
         "src": "/(.*)",
         "dest": "backend/wsgi.py"
       }
-    ],
-    "env": {
-      "OPENAI_API_KEY": "@OPENAI_API_KEY",
-      "OPENAI_AZURE_ENDPOINT": "@OPENAI_AZURE_ENDPOINT",
-      "OPENAI_API_VERSION": "@OPENAI_API_VERSION",
-      "EMBEDDINGS_DEPLOYMENT_NAME": "@EMBEDDINGS_DEPLOYMENT_NAME",
-      "COMPLETIONS_DEPLOYMENT_NAME": "@COMPLETIONS_DEPLOYMENT_NAME",
-      "DB_USER": "@DB_USER",
-      "DB_PASSWORD": "@DB_PASSWORD",
-      "DB_SERVERNAME": "@DB_SERVERNAME"
-    }
+    ]
   }
   

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-#s0x!qqegmhecr8d73l789br)7is2v(q!msdh@gvyae=5x9usu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', 'api.maplebond.com']
 
 
 # Application definition

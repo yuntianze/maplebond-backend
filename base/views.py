@@ -5,6 +5,9 @@ from rest_framework.response import Response
 from utils.azure_openai_manager import AzureOpenAIManager
 from datetime import datetime
 from django.http import HttpResponse
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 azure_openai_manager = AzureOpenAIManager(db_name='MapleBondDB', collection_name='ImmigrationCollection')
@@ -26,16 +29,17 @@ def index(request):
 @api_view(['POST'])
 def startChat(request):
     user_input = str(request.data.get('input'))
-    print(f"Received input: {user_input}")
+    logger.info(f"Received input: {user_input}")
     
     if not user_input or user_input == "":
+        logger.error("No input provided")
         return Response({'error': 'No input provided'}, status=400)
 
     try:
         openai_response = azure_openai_manager.rag_with_vector_search(question=user_input)
         
     except Exception as e:
-        print(f"An error occurred: {e}")
+        logger.error(f"An error occurred: {e}")
         return Response({'error': str(e)}, status=500)
 
     return Response(openai_response, status=200)

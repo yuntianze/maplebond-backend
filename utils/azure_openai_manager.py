@@ -201,5 +201,5 @@ class AzureOpenAIManager:
             {"role": "user", "content": question}
         ]
 
-        response = self.client.chat.completions.create(messages=messages, model=self.completions_model)
+        response = self.client.chat.completions.create(messages=messages, model=self.completions_model, timeout=30)
         return response.choices[0].message.content

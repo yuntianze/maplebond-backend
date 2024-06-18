@@ -1,12 +1,14 @@
 {
     "version": 2,
-    "functions": {
-        "api/**": {
-          "maxDuration": 60,
-          "includeFiles": "backend/wsgi.py"
+    "builds": [
+      {
+        "src": "backend/wsgi.py",
+        "use": "@vercel/python",
+        "config": {
+          "maxLambdaSize": "15mb"
         }
-      },
-
+      }
+    ],
     "routes": [
       {
         "src": "/(.*)",

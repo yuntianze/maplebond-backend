@@ -190,6 +190,9 @@ class AzureOpenAIManager:
         prompt_tokens = len(formatted_prompt.split())
         if prompt_tokens > max_tokens:
             formatted_prompt = formatted_prompt[:max_tokens]
+            
+         # Ensure formatted_prompt is a valid string
+        formatted_prompt = formatted_prompt.strip()
 
         # prepare the LLM request
         messages = [
@@ -197,5 +200,5 @@ class AzureOpenAIManager:
             {"role": "user", "content": question}
         ]
 
-        completion = self.client.chat.completions.create(messages=messages, model=self.completions_model)
-        return completion.choices[0].message.content
+        response = self.client.chat.completions.create(messages=messages, model=self.completions_model)
+        return response.choices[0].message.content

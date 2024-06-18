@@ -25,13 +25,17 @@ def index(request):
 
 @api_view(['POST'])
 def startChat(request):
-    user_input = request.data.get('input')
-    if not user_input:
+    user_input = str(request.data.get('input'))
+    print(f"Received input: {user_input}")
+    
+    if not user_input or user_input == "":
         return Response({'error': 'No input provided'}, status=400)
 
     try:
         openai_response = azure_openai_manager.rag_with_vector_search(question=user_input)
+        
     except Exception as e:
+        print(f"An error occurred: {e}")
         return Response({'error': str(e)}, status=500)
 
     return Response(openai_response, status=200)

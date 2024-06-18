@@ -6,7 +6,7 @@ from pymongo.errors import BulkWriteError
 from dotenv import load_dotenv
 from openai import AzureOpenAI
 from utils.azure_mongodb_manager import AzureMongoDBManager
-from .logger import logger
+from .logger import logger, timeit
 
 class AzureOpenAIManager:
     def __init__(self, db_name: str, collection_name: str):
@@ -156,6 +156,7 @@ class AzureOpenAIManager:
         results = collection.aggregate(pipeline)
         return list(results)
 
+    @timeit
     def rag_with_vector_search(self, question, num_results=1):
         """
         Generate a response using RAG technique based on vector search results from the incoming question.

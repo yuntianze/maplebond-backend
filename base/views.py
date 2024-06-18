@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from utils.azure_openai_manager import AzureOpenAIManager
 from datetime import datetime
 from django.http import HttpResponse
-from utils.logger import logger
+from utils.logger import logger, timeit
 
 
 azure_openai_manager = AzureOpenAIManager(db_name='MapleBondDB', collection_name='ImmigrationCollection')
@@ -25,6 +25,7 @@ def index(request):
 
 
 @api_view(['POST'])
+@timeit
 def startChat(request):
     user_input = str(request.data.get('input'))
     logger.info(f"Received input: {user_input}")

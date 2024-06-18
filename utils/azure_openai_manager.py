@@ -6,6 +6,7 @@ from pymongo.errors import BulkWriteError
 from dotenv import load_dotenv
 from openai import AzureOpenAI
 from utils.azure_mongodb_manager import AzureMongoDBManager
+from .logger import logger
 
 class AzureOpenAIManager:
     def __init__(self, db_name: str, collection_name: str):
@@ -82,16 +83,16 @@ class AzureOpenAIManager:
                     if len(bulk_operations) >= batch_size:
                         collection.bulk_write(bulk_operations)
                         bulk_operations = []
-                        print(f"Bulk update completed for {count} documents.")
+                        logger.info(f"Bulk update completed for {count} documents.")
 
                 if bulk_operations:
                     collection.bulk_write(bulk_operations)
-                    print(f"Final bulk update completed for {count} documents.")
+                    logger.info(f"Final bulk update completed for {count} documents.")
 
             except BulkWriteError as bwe:
-                print(f"Bulk write error occurred: {bwe.details}")
+                logger.error(f"Bulk write error occurred: {bwe.details}")
             except Exception as e:
-                print(f"An unexpected error occurred: {e}")
+                logger.error(f"An unexpected error occurred: {e}")
             finally:
                 cursor.close()
 
@@ -116,9 +117,9 @@ class AzureOpenAIManager:
         }
         try:
             result = self.mongo_manager.db.command(index_command)
-            print("Index creation result:", result)
+            logger.info("Index creation result:", result)
         except Exception as e:
-            print("An error occurred while creating the vector index:", str(e))
+            logger.error("An error occurred while creating the vector index:", str(e))
 
     def delete_vector_index(self):
         """
@@ -128,9 +129,9 @@ class AzureOpenAIManager:
 
         try:
             result = self.mongo_manager.collection.drop_index(index_name)
-            print("Index deletion result:", result)
+            logger.info("Index deletion result:", result)
         except Exception as e:
-            print("An error occurred while deleting the vector index:", str(e))
+            logger.error("An error occurred while deleting the vector index:", str(e))
 
     def vector_search(self, query_text, num_results=3):
         """
@@ -171,9 +172,9 @@ class AzureOpenAIManager:
 
         results = self.vector_search(question, num_results)
         for result in results:
-            print(f"Similarity Score: {result['similarityScore']}")
-            print(f"Title: {result['document']['title']}")
-            print(f"Content: {result['document']['desc']}\n")
+            logger.info(f"Similarity Score: {result['similarityScore']}")
+            logger.info(f"Title: {result['document']['title']}")
+            logger.info(f"Content: {result['document']['desc']}\n")
 
         # Extract and use only relevant parts of the documents to stay within token limits
         result_list = "\n\n".join(json.dumps(

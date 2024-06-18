@@ -5,9 +5,7 @@ from rest_framework.response import Response
 from utils.azure_openai_manager import AzureOpenAIManager
 from datetime import datetime
 from django.http import HttpResponse
-import logging
-
-logger = logging.getLogger(__name__)
+from utils.logger import logger
 
 
 azure_openai_manager = AzureOpenAIManager(db_name='MapleBondDB', collection_name='ImmigrationCollection')

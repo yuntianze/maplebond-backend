@@ -1,5 +1,11 @@
 {
     "version": 2,
+    "functions": {
+        "api/**": {
+          "maxDuration": 60,
+          "includeFiles": "backend/wsgi.py"
+        }
+      },
     "builds": [
       {
         "src": "backend/wsgi.py",
@@ -14,11 +20,6 @@
         "src": "/(.*)",
         "dest": "backend/wsgi.py"
       }
-    ],
-    "functions": {
-        "backend/wsgi.py": {
-        "maxDuration": 30
-      }
-    }
+    ]
   }
   

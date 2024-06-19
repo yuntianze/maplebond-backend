@@ -1,5 +1,10 @@
 {
     "version": 2,
+    "functions": {
+        "base/*py": {
+          "maxDuration": 30
+        }
+    },
     "builds": [
       {
         "src": "backend/wsgi.py",

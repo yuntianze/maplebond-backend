@@ -1,7 +1,7 @@
 {
     "version": 2,
     "functions": {
-        "base/*.py": {
+        "api/*.py": {
           "maxDuration": 30
         }
       },

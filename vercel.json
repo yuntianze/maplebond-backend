@@ -1,5 +1,11 @@
 {
     "version": 2,
+    "functions": {
+        "backend/wsgi.py": {
+          "maxDuration": 30,
+          "type": "background"
+        }
+      },
     "builds": [
       {
         "src": "backend/wsgi.py",

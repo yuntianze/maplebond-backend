@@ -178,14 +178,14 @@ class AzureOpenAIManager:
             logger.info(f"Content: {result['document']['desc']}\n")
 
         # Extract and use only relevant parts of the documents to stay within token limits
-        result_list = "\n\n".join(json.dumps(
+        result_list = "\n".join(json.dumps(
             {
                 "title": result['document'].get('title', ''),
                 "desc": result['document'].get('desc', '')
             }, indent=4, default=str) for result in results)
 
         # Format the prompt for the LLM
-        formatted_prompt = system_prompt + "System-generated context based on user query:\n\n" + result_list
+        formatted_prompt = system_prompt + "System-generated context based on user query:\n" + result_list
 
         # Split prompt if it is too long
         max_tokens = 4096

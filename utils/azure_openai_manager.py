@@ -201,8 +201,6 @@ class AzureOpenAIManager:
             {"role": "system", "content": formatted_prompt},
             {"role": "user", "content": question}
         ]
-        
-        logger.info(f"Sending request to Azure OpenAI for RAG completion with vector search: {messages}")
 
         response = self.client.chat.completions.create(messages=messages, model=self.completions_model, timeout=30)
         return response.choices[0].message.content
